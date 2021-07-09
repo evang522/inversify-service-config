@@ -1,0 +1,2 @@
+import BindServiceIdToConstantValueValidator from './BindServiceIdToConstantValueValidator';
+export default BindServiceIdToConstantValueValidator;

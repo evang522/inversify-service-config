@@ -1,0 +1,2 @@
+import ServiceIdToClassInSingletonScopeBinder from './ServiceIdToClassInSingletonScopeBinder';
+export default ServiceIdToClassInSingletonScopeBinder;

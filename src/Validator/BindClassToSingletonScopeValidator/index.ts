@@ -1,0 +1,2 @@
+import BindClassToSingletonScopeValidator from './BindClassToSingletonScopeValidator';
+export default BindClassToSingletonScopeValidator;

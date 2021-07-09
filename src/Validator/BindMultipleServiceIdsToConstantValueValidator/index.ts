@@ -1,0 +1,2 @@
+import BindMultipleServiceIdsToConstantValueValidator from './BindMultipleServiceIdsToConstantValueValidator';
+export default BindMultipleServiceIdsToConstantValueValidator;
