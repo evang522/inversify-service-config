@@ -1,6 +1,6 @@
 {
   "name": "inversify-config",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "lint:fix": "eslint --fix ./src/*.ts",
     "test-watch": "jest ./src/**/*.test.ts --watch",
     "test": "jest ./src/**/*.test.ts",
-    "build": "tsc --project tsconfig.json"
+    "build": "tsc --project tsconfig.json",
+    "publish": "np"
   },
   "author": "Evan Garrett",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "eslint": "^7.30.0",
     "inversify": "^5.1.1",
     "jest": "^27.0.6",
+    "np": "^7.5.0",
     "reflect-metadata": "^0.1.13",
     "typescript": "^4.3.5",
     "typescript-eslint": "0.0.1-alpha.0"
