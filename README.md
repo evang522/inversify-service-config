@@ -4,7 +4,7 @@
 The purpose of this project is to provide a ts-file config based approach to registering container services with
 inversify instead of needing to do so via procedural code.
 
-For example, the *typical* way of registering services ❌❌:
+❌ For example, the *typical* way of registering services ❌:
 ```ts
 // registerServices.ts
 
@@ -23,7 +23,7 @@ elseif(process.env.NODE_ENV === 'dev')
 
 ```
 
-With this package's configuration:
+✅ With this package's configuration ✅:
 
 ```ts
 // serviceConfig.ts
@@ -51,6 +51,25 @@ export const infrastructureConfig: BoundServiceStructure[] = [
 ```
 
 
+## Quick Start
+
+```ts
+import { BindingManager } from 'inversify-service-config';
+import container from './inversify.config.ts';  // however you decide to initialise your inversify container.
+
+
+const manager = new BindingManager(
+    infrastructureConfig,
+    new Environment<'development'|'production'>('development'),
+    container,
+);
+
+// Running 'processServicesConfig' will bind all services according to your configuration.
+
+manager.processServicesConfig();
+
+// Done. 
+```
 
 
 > The package comes with validation and will throw proper and helpful exceptions when a passed configuration does not make sense or contradicts another. 
