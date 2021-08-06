@@ -1,4 +1,5 @@
 {
   "yarn": false,
-  "contents": "dist"
+  "contents": "dist",
+  "message": "Automatic version bump by NP: %s"
 }

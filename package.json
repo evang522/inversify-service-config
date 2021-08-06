@@ -1,6 +1,6 @@
 {
   "name": "inversify-service-config",
-  "version": "0.0.5",
+  "version": "0.0.3",
   "description": "Inversify environment based configuration files.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "jest ./src/**/*.test.ts",
     "build": "tsc && npm run copyAssetsToDist",
     "copyAssetsToDist": "cp ./package.json ./dist/package.json && cp README.md ./dist/README.md",
-    "release": "np"
+    "release": "npm run build && np"
   },
   "author": "Evan Garrett",
   "license": "ISC",
