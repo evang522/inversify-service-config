@@ -8,7 +8,8 @@
     "lint:fix": "eslint --fix ./src/*.ts",
     "test-watch": "jest ./src/**/*.test.ts --watch",
     "test": "jest ./src/**/*.test.ts",
-    "build": "tsc && cp ./package.json ./dist/package.json",
+    "build": "tsc && npm run copyAssetsToDist",
+    "copyAssetsToDist": "cp ./package.json ./dist/package.json && cp README.md ./dist/README.md",
     "release": "np"
   },
   "author": "Evan Garrett",
