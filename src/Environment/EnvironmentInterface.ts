@@ -3,7 +3,7 @@
  * The primary responsibility is for it to be aware of the current ENV. If you don't want to build
  * the service yourself, you can simply use the `Environment` class.
  */
-export default interface Environment<TEnvironment extends string = string> {
+export default interface EnvironmentInterface<TEnvironment extends string = string> {
     /**
      * @description Provide an environment and the service will return true if it is in this environment.
      * @example  inEnvironment('prod') // returns "true"  if currently in production  "false" if in development.

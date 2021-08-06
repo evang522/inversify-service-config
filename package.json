@@ -7,7 +7,8 @@
     "lint:check": "eslint ./src/*.ts",
     "lint:fix": "eslint --fix ./src/*.ts",
     "test-watch": "jest ./src/**/*.test.ts --watch",
-    "test": "jest ./src/**/*.test.ts"
+    "test": "jest ./src/**/*.test.ts",
+    "build": "tsc --project tsconfig.json"
   },
   "author": "Evan Garrett",
   "license": "ISC",
