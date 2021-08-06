@@ -4,4 +4,4 @@ babel.config.js
 jest.config.js
 .np-config.json
 .idea
-.eslintrc
+.eslintrc.js

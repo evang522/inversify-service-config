@@ -18,7 +18,7 @@
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "noEmit": false,
-    "outDir": "./lib",
+    "outDir": "./dist",
     "types": [
       "jest",
       "node"
@@ -26,10 +26,11 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src/**/*.ts",
+    "src/**/*.ts"
   ],
   "exclude": [
     "src/Example",
-    "lib"
+    "dist",
+    "src/**/*.test.ts"
   ]
 }
