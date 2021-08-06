@@ -1,7 +1,8 @@
 import BoundServiceReader from '../../BoundServiceReader';
 import BindMultipleServiceIdsToConstantValueValidator from './BindMultipleServiceIdsToConstantValueValidator';
-import EndpointConstructor from '../../../../EndpointConstructor';
-import ServiceId from '../../../../../../application/_config/ServiceId';
+import {BindingAction} from "../../BindingAction";
+import {ServiceId} from "../../Example/ServiceId";
+import FileReader from "../../Example/Class/FileReader";
 
 describe('Validate', () =>
 {
@@ -9,7 +10,7 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindMultipleServiceIdsToConstantValue',
+            bindingAction: BindingAction.BindMultipleServiceIdsToConstantValue,
             serviceId: Symbol.for('test symbol'),
         });
 
@@ -22,12 +23,12 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindMultipleServiceIdsToConstantValue',
+            bindingAction: BindingAction.BindMultipleServiceIdsToConstantValue,
             serviceId: [
-                EndpointConstructor,
-                ServiceId.EndpointConstructorInterface,
+                FileReader,
+                ServiceId.FileReaderInterface,
             ],
-            targetClass: EndpointConstructor,
+            targetClass: FileReader,
         });
 
         const validator = new BindMultipleServiceIdsToConstantValueValidator(serviceReader);
@@ -39,10 +40,10 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindMultipleServiceIdsToConstantValue',
+            bindingAction: BindingAction.BindMultipleServiceIdsToConstantValue,
             serviceId: [
-                EndpointConstructor,
-                ServiceId.EndpointConstructorInterface,
+                FileReader,
+                ServiceId.FileReaderInterface,
             ],
         });
 

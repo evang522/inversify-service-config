@@ -1,6 +1,7 @@
 import BoundServiceReader from '../../BoundServiceReader';
-import EndpointConstructor from '../../../../EndpointConstructor';
 import GenericValidator from './GenericValidator';
+import {BindingAction} from "../../BindingAction";
+import FileReader from "../../Example/Class/FileReader";
 
 describe('validate', () =>
 {
@@ -8,9 +9,9 @@ describe('validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToConstantValue',
-            serviceId: EndpointConstructor,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindServiceIdToConstantValue,
+            serviceId: FileReader,
+            targetClass: FileReader,
         });
 
         const validator = new GenericValidator(serviceReader);
@@ -24,10 +25,10 @@ describe('validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            environments: [ 'production' ],
-            bindingAction: 'BindServiceIdToConstantValue',
-            serviceId: EndpointConstructor,
-            targetClass: EndpointConstructor,
+            environments: ['production'],
+            bindingAction: BindingAction.BindServiceIdToConstantValue,
+            serviceId: FileReader,
+            targetClass: FileReader,
         });
 
         const validator = new GenericValidator(serviceReader);
@@ -39,9 +40,9 @@ describe('validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: false,
-            bindingAction: 'BindServiceIdToConstantValue',
-            serviceId: EndpointConstructor,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindServiceIdToConstantValue,
+            serviceId: FileReader,
+            targetClass: FileReader,
         });
 
         const validator = new GenericValidator(serviceReader);
@@ -54,9 +55,9 @@ describe('validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToConstantValue',
-            serviceId: [ EndpointConstructor ],
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindServiceIdToConstantValue,
+            serviceId: [FileReader],
+            targetClass: FileReader,
         });
 
         const validator = new GenericValidator(serviceReader);

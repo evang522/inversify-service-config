@@ -1,6 +1,7 @@
 import BoundServiceReader from '../../BoundServiceReader';
 import BindClassToSingletonScopeValidator from './BindClassToSingletonScopeValidator';
-import EndpointConstructor from '../../../../EndpointConstructor';
+import {BindingAction} from "../../BindingAction";
+import FileReader from "../../Example/Class/FileReader";
 
 describe('Validate', () =>
 {
@@ -8,7 +9,7 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindClassToSingletonScope',
+            bindingAction: BindingAction.BindClassToSingletonScope,
             serviceId: Symbol.for('test symbol'),
         });
 
@@ -21,8 +22,8 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindClassToSingletonScope',
-            serviceId: EndpointConstructor,
+            bindingAction: BindingAction.BindClassToSingletonScope,
+            serviceId: FileReader,
             constantValueFactory: (): boolean => true,
         });
 
@@ -36,9 +37,9 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindClassToSingletonScope',
-            serviceId: EndpointConstructor,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindClassToSingletonScope,
+            serviceId: FileReader,
+            targetClass: FileReader,
         });
 
         const validator = new BindClassToSingletonScopeValidator(serviceReader);
@@ -53,8 +54,8 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindClassToSingletonScope',
-            serviceId: EndpointConstructor,
+            bindingAction: BindingAction.BindClassToSingletonScope,
+            serviceId: FileReader,
         });
 
         const validator = new BindClassToSingletonScopeValidator(serviceReader);

@@ -1,7 +1,8 @@
 import { Container } from 'inversify';
 import BoundServiceReader from '../../BoundServiceReader';
-import EndpointConstructor from '../../../../EndpointConstructor';
 import ClassToSingletonScopeBinder from './ClassToSingletonScopeBinder';
+import FileReader from "../../Example/Class/FileReader";
+import {BindingAction} from "../../BindingAction";
 
 describe('Binding', () =>
 {
@@ -11,16 +12,16 @@ describe('Binding', () =>
 
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindClassToSingletonScope',
-            serviceId: EndpointConstructor,
+            bindingAction: BindingAction.BindClassToSingletonScope,
+            serviceId: FileReader,
         });
 
         const binder = new ClassToSingletonScopeBinder(serviceReader, container);
 
         binder.bindService();
 
-        const firstRequestedService = container.get(EndpointConstructor);
-        const secondRequestedService = container.get(EndpointConstructor);
+        const firstRequestedService = container.get(FileReader);
+        const secondRequestedService = container.get(FileReader);
 
         expect(firstRequestedService).toBe(secondRequestedService);
     });
@@ -31,8 +32,8 @@ describe('Binding', () =>
 
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindClassToSingletonScope',
-            serviceId: EndpointConstructor,
+            bindingAction: BindingAction.BindClassToSingletonScope,
+            serviceId: FileReader,
             whenNamed: 'test123',
         });
 
@@ -40,8 +41,8 @@ describe('Binding', () =>
 
         binder.bindService();
 
-        const firstRequestedService = container.getNamed(EndpointConstructor, 'test123');
-        const secondRequestedService = container.getNamed(EndpointConstructor, 'test123');
+        const firstRequestedService = container.getNamed(FileReader, 'test123');
+        const secondRequestedService = container.getNamed(FileReader, 'test123');
 
         expect(firstRequestedService).toBe(secondRequestedService);
     });

@@ -1,4 +1,6 @@
-export default class Environment<TEnvironment extends string = string> {
+import EnvironmentInterface from "./EnvironmentInterface";
+
+export default class Environment<TEnvironment extends string = string> implements EnvironmentInterface{
     public constructor(
         private currentEnvironment: TEnvironment,
     ) {
@@ -9,7 +11,7 @@ export default class Environment<TEnvironment extends string = string> {
         return this.currentEnvironment === environmentInQuestion;
     }
 
-    public inAnyEnvironment(environmentsInQuestion: TEnvironment[]): boolean
+    public inAnyOfTheseEnvironments(environmentsInQuestion: TEnvironment[]): boolean
     {
         return environmentsInQuestion.includes(this.currentEnvironment);
     }
@@ -20,7 +22,3 @@ export default class Environment<TEnvironment extends string = string> {
     }
 }
 
-
-const environment = new Environment<"dev"|"prod">('dev');
-
-environment.inAnyEnvironment(['dev', 'prod']);

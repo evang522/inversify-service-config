@@ -4,18 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint:check": "eslint ./src/*.ts",
-    "lint:fix": "eslint --fix ./src/*.ts"
+    "lint:fix": "eslint --fix ./src/*.ts",
+    "test-watch": "jest ./src/**/*.test.ts --watch",
+    "test": "jest ./src/**/*.test.ts"
   },
   "author": "Evan Garrett",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-typescript": "^7.14.5",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
     "inversify": "^5.1.1",
     "jest": "^27.0.6",
+    "reflect-metadata": "^0.1.13",
     "typescript": "^4.3.5",
     "typescript-eslint": "0.0.1-alpha.0"
   }

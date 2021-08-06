@@ -20,11 +20,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "types": ["jest", "node"],
-    "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src"
+    "src",
   ],
   "exclude": [
     "src/packages/bin"

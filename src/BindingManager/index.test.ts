@@ -1,14 +1,15 @@
-import ValidatorFactory from '../Validator/ValidatorFactory/ValidatorFactory';
+import ValidatorFactory from '../BinderValidator/ValidatorFactory/ValidatorFactory';
 import BindingManager from './BindingManager';
-import ServiceId from '../../../../../application/_config/ServiceId';
-import { BindingAction } from '../BindingAction';
-import HttpClient from '../../../Client/HttpClient';
-import GenericValidator from '../Validator/GenericValidator/GenericValidator';
+import {BindingAction} from '../BindingAction';
+import GenericValidator from '../BinderValidator/GenericValidator/GenericValidator';
 import BoundServiceReader from '../BoundServiceReader';
 import BoundServiceStructure from '../BoundServiceStructure';
-import AppConfigBuilder from '../../../../../application/Fixture/AppConfigBuilder';
 import BinderFactory from '../Binder/BinderFactory/BinderFactory';
 import ServiceIdToClassBinder from '../Binder/ServiceIdToClassBinder/ServiceIdToClassBinder';
+import Environment from "../Environment/Environment";
+import {Container} from "inversify";
+import {ServiceId} from "../Example/ServiceId";
+import HttpClient from "../Example/Class/HttpClient";
 
 describe('Validation', () =>
 {
@@ -31,10 +32,11 @@ describe('Validation', () =>
         validatorFactory.resolveValidator = jest.fn()
             .mockReturnValue(validator);
 
-        const manager = new BindingManager([ boundServiceConfig ],
+        const manager = new BindingManager([boundServiceConfig],
+            new Environment('dev'),
+            new Container(),
             undefined,
             validatorFactory,
-            undefined
         );
 
         manager.processServicesConfig();
@@ -53,11 +55,13 @@ describe('Environment and binding', () =>
             bindingAction: BindingAction.BindServiceIdToClass,
             targetClass: HttpClient,
             global: false,
-            environments: [ 'staging' ],
+            environments: ['staging'],
         };
 
+        const container = new Container();
         const binder = new ServiceIdToClassBinder(
-            new BoundServiceReader(boundServiceConfig)
+            new BoundServiceReader(boundServiceConfig),
+            container
         );
 
         binder.bindService = jest.fn();
@@ -67,10 +71,10 @@ describe('Environment and binding', () =>
         binderFactory.resolveBinder = jest.fn()
             .mockReturnValue(binder);
 
-        const manager = new BindingManager([ boundServiceConfig ],
+        const manager = new BindingManager([boundServiceConfig],
+            new Environment('dev'),
+            container,
             binderFactory,
-            undefined,
-            new AppConfigBuilder().fromProductionEnv(),
         );
 
         manager.processServicesConfig();
@@ -87,8 +91,10 @@ describe('Environment and binding', () =>
             global: true,
         };
 
+        const container = new Container();
         const binder = new ServiceIdToClassBinder(
-            new BoundServiceReader(boundServiceConfig)
+            new BoundServiceReader(boundServiceConfig),
+            container,
         );
 
         binder.bindService = jest.fn();
@@ -98,10 +104,10 @@ describe('Environment and binding', () =>
         binderFactory.resolveBinder = jest.fn()
             .mockReturnValue(binder);
 
-        const manager = new BindingManager([ boundServiceConfig ],
+        const manager = new BindingManager([boundServiceConfig],
+            new Environment('prod'),
+            container,
             binderFactory,
-            undefined,
-            new AppConfigBuilder().fromProductionEnv(),
         );
 
         manager.processServicesConfig();
@@ -116,11 +122,13 @@ describe('Environment and binding', () =>
             bindingAction: BindingAction.BindServiceIdToClass,
             targetClass: HttpClient,
             global: false,
-            environments: [ 'development' ],
+            environments: ['development'],
         };
 
+        const container = new Container();
         const binder = new ServiceIdToClassBinder(
-            new BoundServiceReader(boundServiceConfig)
+            new BoundServiceReader(boundServiceConfig),
+            container,
         );
 
         binder.bindService = jest.fn();
@@ -130,10 +138,10 @@ describe('Environment and binding', () =>
         binderFactory.resolveBinder = jest.fn()
             .mockReturnValue(binder);
 
-        const manager = new BindingManager([ boundServiceConfig ],
+        const manager = new BindingManager([boundServiceConfig],
+            new Environment('development'),
+            container,
             binderFactory,
-            undefined,
-            new AppConfigBuilder().fromDevelopmentEnv(),
         );
 
         manager.processServicesConfig();

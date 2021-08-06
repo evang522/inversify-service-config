@@ -1,7 +1,8 @@
 import BoundServiceReader from '../../BoundServiceReader';
-import EndpointConstructor from '../../../../EndpointConstructor';
 import BindServiceIdToConstantValueValidator from './BindServiceIdToConstantValueValidator';
-import ServiceId from '../../../../../../application/_config/ServiceId';
+import {BindingAction} from "../../BindingAction";
+import {ServiceId} from "../../Example/ServiceId";
+import FileReader from "../../Example/Class/FileReader";
 
 describe('Validate', () =>
 {
@@ -9,9 +10,9 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToConstantValue',
-            serviceId: EndpointConstructor,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindServiceIdToConstantValue,
+            serviceId: FileReader,
+            targetClass: FileReader,
             constantValueFactory: (): boolean => true,
         });
 
@@ -25,9 +26,9 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToConstantValue',
-            serviceId: EndpointConstructor,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindServiceIdToConstantValue,
+            serviceId: FileReader,
+            targetClass: FileReader,
         });
 
         const validator = new BindServiceIdToConstantValueValidator(serviceReader);
@@ -40,8 +41,8 @@ describe('Validate', () =>
     {
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToConstantValue',
-            serviceId: ServiceId.EndpointConstructorInterface,
+            bindingAction: BindingAction.BindServiceIdToConstantValue,
+            serviceId: ServiceId.FileReaderInterface,
             constantValueFactory: (): boolean => true,
         });
 

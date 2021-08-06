@@ -1,13 +1,13 @@
-import ExtendableError from '../../../../Exception/ExtendableError';
 import BoundService from '../BoundServiceStructure';
-import { isSymbol } from '../../../isSymbol';
+import {isSymbol} from "../Util/isSymbol";
+import {Constructor} from "../Type/Constructor";
 
-export default class ServiceBindingException extends ExtendableError
+export default class ServiceBindingException extends Error
 {
     public static forBoundServiceConfig(boundService: BoundService, reason: string): ServiceBindingException
     {
         return new this(
-            `Container binding for Service ${this.convertServiceIdToString( boundService)} has failed: "${reason}". Please check the service config.`
+            `Container binding for Service ${this.convertServiceIdToString(boundService)} has failed: "${reason}". Please check the service config.`
         );
     }
 
@@ -39,8 +39,7 @@ export default class ServiceBindingException extends ExtendableError
                 if (isSymbol(id))
                 {
                     str += this.convertSymbolServiceIdToString(id as symbol);
-                }
-                else
+                } else
                 {
                     str += (id as Constructor).name;
                 }

@@ -1,8 +1,9 @@
 import { Container } from 'inversify';
 import BoundServiceReader from '../../BoundServiceReader';
-import EndpointConstructor from '../../../../EndpointConstructor';
-import ServiceId from '../../../../../../application/_config/ServiceId';
 import ServiceIdToClassInSingletonScopeBinder from './ServiceIdToClassInSingletonScopeBinder';
+import {BindingAction} from "../../BindingAction";
+import FileReader from "../../Example/Class/FileReader";
+import {ServiceId} from "../../Example/ServiceId";
 
 describe('Binding', () =>
 {
@@ -12,19 +13,19 @@ describe('Binding', () =>
 
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToClassInSingletonScope',
-            targetClass: EndpointConstructor,
-            serviceId: ServiceId.EndpointConstructorInterface,
+            bindingAction: BindingAction.BindServiceIdToClassInSingletonScope,
+            targetClass: FileReader,
+            serviceId: ServiceId.FileReaderInterface,
         });
 
         const binder = new ServiceIdToClassInSingletonScopeBinder(serviceReader, container);
 
         binder.bindService();
 
-        const firstRequestedService = container.get(ServiceId.EndpointConstructorInterface);
-        const secondRequestedService = container.get(ServiceId.EndpointConstructorInterface);
+        const firstRequestedService = container.get(ServiceId.FileReaderInterface);
+        const secondRequestedService = container.get(ServiceId.FileReaderInterface);
 
-        expect(firstRequestedService).toBeInstanceOf(EndpointConstructor);
+        expect(firstRequestedService).toBeInstanceOf(FileReader);
 
         expect(firstRequestedService).toBe(secondRequestedService);
     });
@@ -35,9 +36,9 @@ describe('Binding', () =>
 
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToClassInSingletonScope',
-            targetClass: EndpointConstructor,
-            serviceId: ServiceId.EndpointConstructorInterface,
+            bindingAction: BindingAction.BindServiceIdToClassInSingletonScope,
+            targetClass: FileReader,
+            serviceId: ServiceId.FileReaderInterface,
             whenNamed: 'NamedScope',
         });
 
@@ -45,10 +46,10 @@ describe('Binding', () =>
 
         binder.bindService();
 
-        const firstRequestedService = container.getNamed(ServiceId.EndpointConstructorInterface, 'NamedScope');
-        const secondRequestedService = container.getNamed(ServiceId.EndpointConstructorInterface, 'NamedScope');
+        const firstRequestedService = container.getNamed(ServiceId.FileReaderInterface, 'NamedScope');
+        const secondRequestedService = container.getNamed(ServiceId.FileReaderInterface, 'NamedScope');
 
-        expect(firstRequestedService).toBeInstanceOf(EndpointConstructor);
+        expect(firstRequestedService).toBeInstanceOf(FileReader);
 
         expect(firstRequestedService).toBe(secondRequestedService);
     });

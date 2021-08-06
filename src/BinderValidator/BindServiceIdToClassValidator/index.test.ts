@@ -1,8 +1,8 @@
 import BoundServiceReader from '../../BoundServiceReader';
-import EndpointConstructor from '../../../../EndpointConstructor';
 import BindServiceIdToClassValidator from './BindServiceIdToClassValidator';
-import ServiceId from '../../../../../../application/_config/ServiceId';
-import { BindingAction } from '../../BindingAction';
+import {BindingAction} from '../../BindingAction';
+import {ServiceId} from "../../Example/ServiceId";
+import FileReader from "../../Example/Class/FileReader";
 
 describe('Validate', () =>
 {
@@ -11,8 +11,8 @@ describe('Validate', () =>
         const serviceReader = new BoundServiceReader({
             global: true,
             bindingAction: BindingAction.BindServiceIdToClass,
-            serviceId: EndpointConstructor,
-            targetClass: EndpointConstructor,
+            serviceId: FileReader,
+            targetClass: FileReader,
         });
 
         const validator = new BindServiceIdToClassValidator(serviceReader);
@@ -26,8 +26,8 @@ describe('Validate', () =>
         const serviceReader = new BoundServiceReader({
             global: true,
             bindingAction: BindingAction.BindServiceIdToClass,
-            serviceId: ServiceId.EndpointConstructorInterface,
-            targetClass: EndpointConstructor,
+            serviceId: ServiceId.FileReaderInterface,
+            targetClass: FileReader,
             constantValueFactory: (): boolean => true,
         });
 
@@ -44,7 +44,7 @@ describe('Validate', () =>
         const serviceReader = new BoundServiceReader({
             global: true,
             bindingAction: BindingAction.BindServiceIdToClass,
-            serviceId: ServiceId.EndpointConstructorInterface,
+            serviceId: ServiceId.FileReaderInterface,
         });
 
         const validator = new BindServiceIdToClassValidator(serviceReader);
@@ -60,8 +60,8 @@ describe('Validate', () =>
         const serviceReader = new BoundServiceReader({
             global: true,
             bindingAction: BindingAction.BindServiceIdToClass,
-            serviceId: ServiceId.EndpointConstructorInterface,
-            targetClass: EndpointConstructor,
+            serviceId: ServiceId.FileReaderInterface,
+            targetClass: FileReader,
         });
 
         const validator = new BindServiceIdToClassValidator(serviceReader);

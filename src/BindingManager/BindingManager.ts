@@ -2,7 +2,7 @@ import BoundService from '../BoundServiceStructure';
 import BoundServiceReader from '../BoundServiceReader';
 import BoundServiceStructure from '../BoundServiceStructure';
 import BinderFactory from '../Binder/BinderFactory/BinderFactory';
-import ValidatorFactory from '../Validator/ValidatorFactory/ValidatorFactory';
+import ValidatorFactory from '../BinderValidator/ValidatorFactory/ValidatorFactory';
 import Environment from "../Environment/Environment";
 import {Container} from "inversify";
 
@@ -34,7 +34,7 @@ class BindingManager
 
         const specifiedEnvironments = boundServiceReader.environments();
 
-        if (!boundServiceReader.isGlobal() && !this.environment.inAnyEnvironment(specifiedEnvironments as string[]))
+        if (!boundServiceReader.isGlobal() && !this.environment.inAnyOfTheseEnvironments(specifiedEnvironments as string[]))
         {
             // Not intended to be bound in this environment, we can simply return
             return;

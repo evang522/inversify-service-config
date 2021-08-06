@@ -1,25 +1,23 @@
 import ValidatorFactory from './ValidatorFactory';
 import BoundServiceReader from '../../BoundServiceReader';
-import ServiceId from '../../../../../../application/_config/ServiceId';
-import EndpointConstructor from '../../../../EndpointConstructor';
 import BindClassToSingletonScopeValidator from '../BindClassToSingletonScopeValidator';
 import BindMultipleServiceIdsToConstantValueValidator from '../BindMultipleServiceIdsToConstantValueValidator';
-import BindServiceIdToConstantValueValidator
-    from '../BindServiceIdToConstantValueValidator/BindServiceIdToConstantValueValidator';
 import BindServiceIdToClassValidator from '../BindServiceIdToClassValidator';
 import GenericValidator from '../GenericValidator';
-import { BindingAction } from '../../BindingAction';
+import {BindingAction} from '../../BindingAction';
+import {ServiceId} from "../../Example/ServiceId";
+import FileReader from "../../Example/Class/FileReader";
 
 describe('Returns correct validator', () =>
 {
-    it('BindClassToSingletonScope', () =>
+    it(BindingAction.BindClassToSingletonScope, () =>
     {
         const validatorFactory = new ValidatorFactory();
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindClassToSingletonScope',
-            serviceId: ServiceId.EndpointConstructorInterface,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindClassToSingletonScope,
+            serviceId: ServiceId.FileReaderInterface,
+            targetClass: FileReader,
             constantValueFactory: (): boolean => true,
         });
 
@@ -28,14 +26,14 @@ describe('Returns correct validator', () =>
         expect(validator).toBeInstanceOf(BindClassToSingletonScopeValidator);
     });
 
-    it('BindMultipleServiceIdsToConstantValue', () =>
+    it(BindingAction.BindMultipleServiceIdsToConstantValue, () =>
     {
         const validatorFactory = new ValidatorFactory();
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindMultipleServiceIdsToConstantValue',
-            serviceId: ServiceId.EndpointConstructorInterface,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindMultipleServiceIdsToConstantValue,
+            serviceId: ServiceId.FileReaderInterface,
+            targetClass: FileReader,
             constantValueFactory: (): boolean => true,
         });
 
@@ -44,20 +42,20 @@ describe('Returns correct validator', () =>
         expect(validator).toBeInstanceOf(BindMultipleServiceIdsToConstantValueValidator);
     });
 
-    it('BindServiceIdToConstantValue', () =>
+    it(BindingAction.BindMultipleServiceIdsToConstantValue, () =>
     {
         const validatorFactory = new ValidatorFactory();
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToConstantValue',
-            serviceId: ServiceId.EndpointConstructorInterface,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindMultipleServiceIdsToConstantValue,
+            serviceId: ServiceId.FileReaderInterface,
+            targetClass: FileReader,
             constantValueFactory: (): boolean => true,
         });
 
         const validator = validatorFactory.resolveValidator(serviceReader);
 
-        expect(validator).toBeInstanceOf(BindServiceIdToConstantValueValidator);
+        expect(validator).toBeInstanceOf(BindMultipleServiceIdsToConstantValueValidator);
     });
 
     it('BindServiceIdToClass', () =>
@@ -66,8 +64,8 @@ describe('Returns correct validator', () =>
         const serviceReader = new BoundServiceReader({
             global: true,
             bindingAction: BindingAction.BindServiceIdToClass,
-            serviceId: ServiceId.EndpointConstructorInterface,
-            targetClass: EndpointConstructor,
+            serviceId: ServiceId.FileReaderInterface,
+            targetClass: FileReader,
             constantValueFactory: (): boolean => true,
         });
 
@@ -81,9 +79,9 @@ describe('Returns correct validator', () =>
         const validatorFactory = new ValidatorFactory();
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindServiceIdToClassInSingletonScope',
-            serviceId: ServiceId.EndpointConstructorInterface,
-            targetClass: EndpointConstructor,
+            bindingAction: BindingAction.BindServiceIdToClassInSingletonScope,
+            serviceId: ServiceId.FileReaderInterface,
+            targetClass: FileReader,
             constantValueFactory: (): boolean => true,
         });
 

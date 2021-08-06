@@ -1,8 +1,9 @@
 import { Container } from 'inversify';
 import BoundServiceReader from '../../BoundServiceReader';
-import EndpointConstructor from '../../../../EndpointConstructor';
 import MultipleServiceIdsToConstantValueBinder from './MultipleServiceIdsToConstantValueBinder';
-import ServiceId from '../../../../../../application/_config/ServiceId';
+import {BindingAction} from "../../BindingAction";
+import FileReader from "../../Example/Class/FileReader";
+import {ServiceId} from "../../Example/ServiceId";
 
 describe('Binding', () =>
 {
@@ -12,13 +13,14 @@ describe('Binding', () =>
 
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindMultipleServiceIdsToConstantValue',
+            bindingAction: BindingAction.BindMultipleServiceIdsToConstantValue,
             serviceId: [
-                EndpointConstructor, ServiceId.EndpointConstructorInterface,
+                FileReader,
+                ServiceId.FileReaderInterface,
             ],
-            constantValueFactory: (): EndpointConstructor =>
+            constantValueFactory: (): FileReader =>
             {
-                const epConstructor = new EndpointConstructor();
+                const epConstructor = new FileReader();
                 // @ts-ignore
                 epConstructor.testValue = 'testValue';
 
@@ -30,8 +32,8 @@ describe('Binding', () =>
 
         binder.bindService();
 
-        const firstRequestedService = container.get(EndpointConstructor);
-        const secondRequestedService = container.get(ServiceId.EndpointConstructorInterface);
+        const firstRequestedService = container.get(FileReader);
+        const secondRequestedService = container.get(ServiceId.FileReaderInterface);
 
         expect(firstRequestedService).toBe(secondRequestedService);
         // @ts-ignore
@@ -46,13 +48,13 @@ describe('Binding', () =>
 
         const serviceReader = new BoundServiceReader({
             global: true,
-            bindingAction: 'BindMultipleServiceIdsToConstantValue',
+            bindingAction: BindingAction.BindMultipleServiceIdsToConstantValue,
             serviceId: [
-                EndpointConstructor, ServiceId.EndpointConstructorInterface,
+                FileReader, ServiceId.FileReaderInterface,
             ],
-            constantValueFactory: (): EndpointConstructor =>
+            constantValueFactory: (): FileReader =>
             {
-                const epConstructor = new EndpointConstructor();
+                const epConstructor = new FileReader();
                 // @ts-ignore
                 epConstructor.testValue = 'testValue';
 
@@ -65,8 +67,8 @@ describe('Binding', () =>
 
         binder.bindService();
 
-        const firstRequestedService = container.getNamed(EndpointConstructor, 'test1234');
-        const secondRequestedService = container.getNamed(EndpointConstructor, 'test1234');
+        const firstRequestedService = container.getNamed(FileReader, 'test1234');
+        const secondRequestedService = container.getNamed(FileReader, 'test1234');
 
         expect(firstRequestedService).toBe(secondRequestedService);
         // @ts-ignore
