@@ -1,6 +1,6 @@
 {
   "name": "inversify-service-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Inversify environment based configuration files.",
   "main": "index.js",
   "scripts": {
