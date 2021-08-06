@@ -3,6 +3,14 @@
   "version": "0.0.6",
   "description": "Inversify environment based configuration files.",
   "main": "index.js",
+  "keywords": [
+    "dependency-injection",
+    "inversify",
+    "configuration",
+    "di",
+    "SOLID",
+    "ioc"
+  ],
   "scripts": {
     "lint:check": "eslint ./src/*.ts",
     "lint:fix": "eslint --fix ./src/*.ts",
