@@ -1,5 +1,5 @@
 {
-  "name": "inversify-config",
+  "name": "inversify-service-config",
   "version": "0.0.0",
   "description": "Inversify environment based configuration files.",
   "main": "index.js",
