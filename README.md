@@ -1,10 +1,10 @@
 # Inversify Container Bindings via Config
+[![npm version](https://badge.fury.io/js/inversify-service-config.svg)](https://badge.fury.io/js/inversify-service-config)
 
 The purpose of this project is to provide a ts-file config based approach to registering container services with
 inversify instead of needing to do so via procedural code.
 
-For example, the typical way of registering services:
-
+For example, the *typical* way of registering services ❌❌:
 ```ts
 // registerServices.ts
 
