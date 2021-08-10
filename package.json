@@ -1,5 +1,6 @@
 {
   "name": "inversify-service-config",
+  "repository": "https://github.com/evang522/inversify-service-config",
   "version": "0.0.7",
   "description": "Inversify environment based configuration files.",
   "main": "index.js",
