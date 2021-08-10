@@ -18,7 +18,7 @@
     "test-watch": "jest --watch",
     "test": "jest",
     "build": "tsc && npm run copyAssetsToDist",
-    "copyAssetsToDist": "cp ./package.json ./dist/package.json && cp README.md ./dist/README.md",
+    "copyAssetsToDist": "cp ./package.json ./dist/package.json && cp README.md ./dist/README.md && cp -r ./assets ./dist/assets",
     "release": "npm run build && np"
   },
   "author": "Evan Garrett",
