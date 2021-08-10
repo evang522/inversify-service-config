@@ -1,4 +1,6 @@
-# Inversify Container Bindings via Config
+<img src="/assets/inversify_config_logo.png" width="109" alt="inversify_logo" title="Inversify Logo"/>
+
+# Inversify Container Bindings
 [![npm version](https://badge.fury.io/js/inversify-service-config.svg)](https://badge.fury.io/js/inversify-service-config)
 
 The purpose of this project is to provide a ts-file config based approach to registering container services with
