@@ -1,8 +1,8 @@
 export enum BindingAction
 {
     /**
-     * @description This will take multiple service Ids (service ID symbols or classes and bind them to a constant value)
-     * For example, binding the Event Bus Class and the Event Bus Interface to the same instance
+     * @description Requires a `constantValueFactory` method. This will take multiple service Ids (service ID symbols or classes and bind them to a constant value)
+     * For example, binding the Event Bus Class and the Event Bus Interface to the same instance.
      */
     BindMultipleServiceIdsToConstantValue = 'BindMultipleServiceIdsToConstantValue',
     /**

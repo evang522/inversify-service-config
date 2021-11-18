@@ -3,14 +3,14 @@ import BoundServiceReader from '../BoundServiceReader';
 import BoundServiceStructure from '../BoundServiceStructure';
 import BinderFactory from '../Binder/BinderFactory/BinderFactory';
 import ValidatorFactory from '../BinderValidator/ValidatorFactory/ValidatorFactory';
-import Environment from "../Environment/Environment";
 import {Container} from "inversify";
+import EnvironmentInterface from "../Environment/EnvironmentInterface";
 
-class BindingManager
+class BindingManager<TEnvironment extends string>
 {
     public constructor(
-        private servicesConfig: BoundService[],
-        private environment: Environment,
+        private servicesConfig: Array<BoundService<TEnvironment>>,
+        private environment: EnvironmentInterface<TEnvironment>,
         private container: Container,
         private binderFactory: BinderFactory = new BinderFactory(),
         private validatorFactory: ValidatorFactory = new ValidatorFactory(),
@@ -18,7 +18,7 @@ class BindingManager
 
     public processServicesConfig(): void
     {
-        this.servicesConfig.forEach((service: BoundServiceStructure) =>
+        this.servicesConfig.forEach((service: BoundServiceStructure<TEnvironment>) =>
         {
             const reader = new BoundServiceReader(service);
             this.processServiceConfig(reader);
@@ -34,7 +34,7 @@ class BindingManager
 
         const specifiedEnvironments = boundServiceReader.environments();
 
-        if (!boundServiceReader.isGlobal() && !this.environment.inAnyOfTheseEnvironments(specifiedEnvironments as string[]))
+        if (!boundServiceReader.isGlobal() && !this.environment.inAnyOfTheseEnvironments(specifiedEnvironments as TEnvironment[]))
         {
             // Not intended to be bound in this environment, we can simply return
             return;
